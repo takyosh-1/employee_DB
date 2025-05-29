@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>従業員情報入力フォーム</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>従業員情報入力フォーム</h1>
+        <form action="complete.html" method="get">
+            <!-- 基本情報 -->
+            <fieldset>
+                <legend>基本情報</legend>
+                
+                <div class="form-group">
+                    <label for="name">氏名</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="kana">カナ氏名</label>
+                    <input type="text" id="kana" name="kana" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="birthdate">生年月日</label>
+                    <input type="date" id="birthdate" name="birthdate" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="employee-id">社員番号</label>
+                    <input type="text" id="employee-id" name="employee-id" required>
+                </div>
+            </fieldset>
+            
+            <!-- 職務情報 -->
+            <fieldset>
+                <legend>職務情報</legend>
+                
+                <div class="form-group">
+                    <label for="department">所属部署</label>
+                    <input type="text" id="department" name="department" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="position">役職</label>
+                    <input type="text" id="position" name="position" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="employment-type">雇用形態</label>
+                    <select id="employment-type" name="employment-type" required>
+                        <option value="">選択してください</option>
+                        <option value="正社員">正社員</option>
+                        <option value="契約社員">契約社員</option>
+                        <option value="パート">パート・アルバイト</option>
+                        <option value="派遣社員">派遣社員</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="vacation-days">有休残日数</label>
+                    <input type="number" id="vacation-days" name="vacation-days" min="0" step="0.5" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="status">ステータス</label>
+                    <select id="status" name="status" required>
+                        <option value="">選択してください</option>
+                        <option value="在職中">在職中</option>
+                        <option value="休職中">休職中</option>
+                        <option value="育休中">育休中</option>
+                        <option value="産休中">産休中</option>
+                    </select>
+                </div>
+            </fieldset>
+            
+            <!-- 住所情報 -->
+            <fieldset>
+                <legend>住所情報</legend>
+                
+                <div class="form-group">
+                    <label for="prefecture">都道府県</label>
+                    <select id="prefecture" name="prefecture" required>
+                        <option value="">選択してください</option>
+                        <option value="北海道">北海道</option>
+                        <option value="青森県">青森県</option>
+                        <option value="岩手県">岩手県</option>
+                        <option value="宮城県">宮城県</option>
+                        <option value="秋田県">秋田県</option>
+                        <option value="山形県">山形県</option>
+                        <option value="福島県">福島県</option>
+                        <option value="茨城県">茨城県</option>
+                        <option value="栃木県">栃木県</option>
+                        <option value="群馬県">群馬県</option>
+                        <option value="埼玉県">埼玉県</option>
+                        <option value="千葉県">千葉県</option>
+                        <option value="東京都">東京都</option>
+                        <option value="神奈川県">神奈川県</option>
+                        <option value="新潟県">新潟県</option>
+                        <option value="富山県">富山県</option>
+                        <option value="石川県">石川県</option>
+                        <option value="福井県">福井県</option>
+                        <option value="山梨県">山梨県</option>
+                        <option value="長野県">長野県</option>
+                        <option value="岐阜県">岐阜県</option>
+                        <option value="静岡県">静岡県</option>
+                        <option value="愛知県">愛知県</option>
+                        <option value="三重県">三重県</option>
+                        <option value="滋賀県">滋賀県</option>
+                        <option value="京都府">京都府</option>
+                        <option value="大阪府">大阪府</option>
+                        <option value="兵庫県">兵庫県</option>
+                        <option value="奈良県">奈良県</option>
+                        <option value="和歌山県">和歌山県</option>
+                        <option value="鳥取県">鳥取県</option>
+                        <option value="島根県">島根県</option>
+                        <option value="岡山県">岡山県</option>
+                        <option value="広島県">広島県</option>
+                        <option value="山口県">山口県</option>
+                        <option value="徳島県">徳島県</option>
+                        <option value="香川県">香川県</option>
+                        <option value="愛媛県">愛媛県</option>
+                        <option value="高知県">高知県</option>
+                        <option value="福岡県">福岡県</option>
+                        <option value="佐賀県">佐賀県</option>
+                        <option value="長崎県">長崎県</option>
+                        <option value="熊本県">熊本県</option>
+                        <option value="大分県">大分県</option>
+                        <option value="宮崎県">宮崎県</option>
+                        <option value="鹿児島県">鹿児島県</option>
+                        <option value="沖縄県">沖縄県</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="city">市区町村</label>
+                    <input type="text" id="city" name="city" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="street">番地</label>
+                    <input type="text" id="street" name="street" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address-other">その他</label>
+                    <input type="text" id="address-other" name="address-other">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">電話番号</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+            </fieldset>
+            
+            <!-- 社会保険情報 -->
+            <fieldset>
+                <legend>社会保険情報</legend>
+                
+                <div class="form-group">
+                    <label for="insurance-type">社会保険区分</label>
+                    <select id="insurance-type" name="insurance-type" required>
+                        <option value="">選択してください</option>
+                        <option value="健康保険">健康保険</option>
+                        <option value="厚生年金">厚生年金</option>
+                        <option value="雇用保険">雇用保険</option>
+                        <option value="労災保険">労災保険</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="insurance-number">被保険者番号</label>
+                    <input type="text" id="insurance-number" name="insurance-number" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="insured-type">被保険者区分</label>
+                    <select id="insured-type" name="insured-type" required>
+                        <option value="">選択してください</option>
+                        <option value="一般">一般</option>
+                        <option value="高齢者">高齢者</option>
+                        <option value="任意継続">任意継続</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="acquisition-loss">取得/喪失区分</label>
+                    <select id="acquisition-loss" name="acquisition-loss" required>
+                        <option value="">選択してください</option>
+                        <option value="取得">取得</option>
+                        <option value="喪失">喪失</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reason-code">得失理由区分</label>
+                    <select id="reason-code" name="reason-code" required>
+                        <option value="">選択してください</option>
+                        <option value="入社">入社</option>
+                        <option value="退職">退職</option>
+                        <option value="転勤">転勤</option>
+                        <option value="その他">その他</option>
+                    </select>
+                </div>
+            </fieldset>
+            
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">提出</button>
+                <button type="reset" class="reset-btn">リセット</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
