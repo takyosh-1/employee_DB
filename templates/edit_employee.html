@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+{% block title %}従業員情報編集{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>従業員情報編集</h2>
+    
+    <form action="{{ url_for('edit_employee', employee_id=employee.employee_id) }}" method="post">
+        <!-- 基本情報 -->
+        <fieldset>
+            <legend>基本情報</legend>
+            
+            <div class="form-group">
+                <label for="employee_id">社員番号</label>
+                <input type="text" id="employee_id" value="{{ employee.employee_id }}" readonly>
+            </div>
+            
+            <div class="form-group">
+                <label for="name">氏名</label>
+                <input type="text" id="name" name="name" value="{{ employee.name }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="kana">カナ氏名</label>
+                <input type="text" id="kana" name="kana" value="{{ employee.kana }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="birthdate">生年月日</label>
+                <input type="date" id="birthdate" name="birthdate" value="{{ employee.birthdate }}" required>
+            </div>
+        </fieldset>
+        
+        <!-- 職務情報 -->
+        <fieldset>
+            <legend>職務情報</legend>
+            
+            <div class="form-group">
+                <label for="department">所属部署</label>
+                <input type="text" id="department" name="department" value="{{ employee.department }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="position">役職</label>
+                <input type="text" id="position" name="position" value="{{ employee.position }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="employment_type">雇用形態</label>
+                <select id="employment_type" name="employment_type" required>
+                    <option value="">選択してください</option>
+                    <option value="正社員" {% if employee.employment_type == '正社員' %}selected{% endif %}>正社員</option>
+                    <option value="契約社員" {% if employee.employment_type == '契約社員' %}selected{% endif %}>契約社員</option>
+                    <option value="パート・アルバイト" {% if employee.employment_type == 'パート・アルバイト' %}selected{% endif %}>パート・アルバイト</option>
+                    <option value="派遣社員" {% if employee.employment_type == '派遣社員' %}selected{% endif %}>派遣社員</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="vacation_days">有休残日数</label>
+                <input type="number" id="vacation_days" name="vacation_days" min="0" step="0.5" value="{{ employee.vacation_days }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="status">ステータス</label>
+                <select id="status" name="status" required>
+                    <option value="">選択してください</option>
+                    <option value="在職中" {% if employee.status == '在職中' %}selected{% endif %}>在職中</option>
+                    <option value="休職中" {% if employee.status == '休職中' %}selected{% endif %}>休職中</option>
+                    <option value="育休中" {% if employee.status == '育休中' %}selected{% endif %}>育休中</option>
+                    <option value="産休中" {% if employee.status == '産休中' %}selected{% endif %}>産休中</option>
+                </select>
+            </div>
+        </fieldset>
+        
+        <!-- 住所情報 -->
+        <fieldset>
+            <legend>住所情報</legend>
+            
+            <div class="form-group">
+                <label for="prefecture">都道府県</label>
+                <select id="prefecture" name="prefecture" required>
+                    <option value="">選択してください</option>
+                    {% for pref in ['北海道', '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県', '茨城県', '栃木県', '群馬県', '埼玉県', '千葉県', '東京都', '神奈川県', '新潟県', '富山県', '石川県', '福井県', '山梨県', '長野県', '岐阜県', '静岡県', '愛知県', '三重県', '滋賀県', '京都府', '大阪府', '兵庫県', '奈良県', '和歌山県', '鳥取県', '島根県', '岡山県', '広島県', '山口県', '徳島県', '香川県', '愛媛県', '高知県', '福岡県', '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県'] %}
+                        <option value="{{ pref }}" {% if employee.prefecture == pref %}selected{% endif %}>{{ pref }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="city">市区町村</label>
+                <input type="text" id="city" name="city" value="{{ employee.city }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="street">番地</label>
+                <input type="text" id="street" name="street" value="{{ employee.street }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="address_other">その他</label>
+                <input type="text" id="address_other" name="address_other" value="{{ employee.address_other }}">
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">電話番号</label>
+                <input type="tel" id="phone" name="phone" value="{{ employee.phone }}" required>
+            </div>
+        </fieldset>
+        
+        <!-- 社会保険情報 -->
+        <fieldset>
+            <legend>社会保険情報</legend>
+            
+            <div class="form-group">
+                <label for="insurance_type">社会保険区分</label>
+                <select id="insurance_type" name="insurance_type" required>
+                    <option value="">選択してください</option>
+                    <option value="健康保険" {% if employee.insurance_type == '健康保険' %}selected{% endif %}>健康保険</option>
+                    <option value="厚生年金" {% if employee.insurance_type == '厚生年金' %}selected{% endif %}>厚生年金</option>
+                    <option value="雇用保険" {% if employee.insurance_type == '雇用保険' %}selected{% endif %}>雇用保険</option>
+                    <option value="労災保険" {% if employee.insurance_type == '労災保険' %}selected{% endif %}>労災保険</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="insurance_number">被保険者番号</label>
+                <input type="text" id="insurance_number" name="insurance_number" value="{{ employee.insurance_number }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="insured_type">被保険者区分</label>
+                <select id="insured_type" name="insured_type" required>
+                    <option value="">選択してください</option>
+                    <option value="一般" {% if employee.insured_type == '一般' %}selected{% endif %}>一般</option>
+                    <option value="高齢者" {% if employee.insured_type == '高齢者' %}selected{% endif %}>高齢者</option>
+                    <option value="任意継続" {% if employee.insured_type == '任意継続' %}selected{% endif %}>任意継続</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="acquisition_loss">取得/喪失区分</label>
+                <select id="acquisition_loss" name="acquisition_loss" required>
+                    <option value="">選択してください</option>
+                    <option value="取得" {% if employee.acquisition_loss == '取得' %}selected{% endif %}>取得</option>
+                    <option value="喪失" {% if employee.acquisition_loss == '喪失' %}selected{% endif %}>喪失</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="reason_code">得失理由区分</label>
+                <select id="reason_code" name="reason_code" required>
+                    <option value="">選択してください</option>
+                    <option value="入社" {% if employee.reason_code == '入社' %}selected{% endif %}>入社</option>
+                    <option value="退職" {% if employee.reason_code == '退職' %}selected{% endif %}>退職</option>
+                    <option value="転勤" {% if employee.reason_code == '転勤' %}selected{% endif %}>転勤</option>
+                    <option value="その他" {% if employee.reason_code == 'その他' %}selected{% endif %}>その他</option>
+                </select>
+            </div>
+        </fieldset>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn submit-btn">更新</button>
+            <a href="{{ url_for('index', id=employee.employee_id) }}" class="btn back-btn">戻る</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

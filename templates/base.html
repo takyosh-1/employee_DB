@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}従業員情報管理システム{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>従業員情報管理システム</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">従業員一覧</a></li>
+                    <li><a href="{{ url_for('add_employee') }}">新規従業員追加</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 従業員情報管理システム</p>
+        </footer>
+    </div>
+</body>
+</html>
