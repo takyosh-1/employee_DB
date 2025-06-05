@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}従業員一覧・詳細{% endblock %}
+
+{% block content %}
+<div class="employee-management">
+    <div class="employee-list">
+        <h2>従業員一覧</h2>
+        <div class="list-container">
+            {% if employees %}
+                <ul>
+                    {% for employee in employees %}
+                        <li {% if selected_employee and selected_employee.employee_id == employee.employee_id %}class="active"{% endif %}>
+                            <a href="{{ url_for('index', id=employee.employee_id) }}">
+                                <span class="employee-id">{{ employee.employee_id }}</span>
+                                <span class="employee-name">{{ employee.name }}</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="no-data">従業員データがありません。</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="employee-details">
+        <h2>従業員詳細情報</h2>
+        {% if selected_employee %}
+            <div class="details-container">
+                <div class="detail-actions">
+                    <a href="{{ url_for('edit_employee', employee_id=selected_employee.employee_id) }}" class="btn edit-btn">編集</a>
+                    <a href="{{ url_for('delete_employee', employee_id=selected_employee.employee_id) }}" class="btn delete-btn" onclick="return confirm('本当に削除しますか？')">削除</a>
+                </div>
+                
+                <div class="detail-section">
+                    <h3>基本情報</h3>
+                    <table>
+                        <tr>
+                            <th>社員番号</th>
+                            <td>{{ selected_employee.employee_id }}</td>
+                        </tr>
+                        <tr>
+                            <th>氏名</th>
+                            <td>{{ selected_employee.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>カナ氏名</th>
+                            <td>{{ selected_employee.kana }}</td>
+                        </tr>
+                        <tr>
+                            <th>生年月日</th>
+                            <td>{{ selected_employee.birthdate }}</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="detail-section">
+                    <h3>職務情報</h3>
+                    <table>
+                        <tr>
+                            <th>所属部署</th>
+                            <td>{{ selected_employee.department }}</td>
+                        </tr>
+                        <tr>
+                            <th>役職</th>
+                            <td>{{ selected_employee.position }}</td>
+                        </tr>
+                        <tr>
+                            <th>雇用形態</th>
+                            <td>{{ selected_employee.employment_type }}</td>
+                        </tr>
+                        <tr>
+                            <th>有休残日数</th>
+                            <td>{{ selected_employee.vacation_days }}</td>
+                        </tr>
+                        <tr>
+                            <th>ステータス</th>
+                            <td>{{ selected_employee.status }}</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="detail-section">
+                    <h3>住所情報</h3>
+                    <table>
+                        <tr>
+                            <th>都道府県</th>
+                            <td>{{ selected_employee.prefecture }}</td>
+                        </tr>
+                        <tr>
+                            <th>市区町村</th>
+                            <td>{{ selected_employee.city }}</td>
+                        </tr>
+                        <tr>
+                            <th>番地</th>
+                            <td>{{ selected_employee.street }}</td>
+                        </tr>
+                        <tr>
+                            <th>その他</th>
+                            <td>{{ selected_employee.address_other }}</td>
+                        </tr>
+                        <tr>
+                            <th>電話番号</th>
+                            <td>{{ selected_employee.phone }}</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="detail-section">
+                    <h3>社会保険情報</h3>
+                    <table>
+                        <tr>
+                            <th>社会保険区分</th>
+                            <td>{{ selected_employee.insurance_type }}</td>
+                        </tr>
+                        <tr>
+                            <th>被保険者番号</th>
+                            <td>{{ selected_employee.insurance_number }}</td>
+                        </tr>
+                        <tr>
+                            <th>被保険者区分</th>
+                            <td>{{ selected_employee.insured_type }}</td>
+                        </tr>
+                        <tr>
+                            <th>取得/喪失区分</th>
+                            <td>{{ selected_employee.acquisition_loss }}</td>
+                        </tr>
+                        <tr>
+                            <th>得失理由区分</th>
+                            <td>{{ selected_employee.reason_code }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        {% else %}
+            <p class="no-data">従業員を選択するか、新規追加してください。</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
