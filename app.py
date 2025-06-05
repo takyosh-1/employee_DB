@@ -129,6 +129,45 @@ def edit_employee(employee_id):
     
     return render_template('edit_employee.html', employee=employee)
 
+@app.route('/update_inline/<employee_id>', methods=['POST'])
+def update_inline(employee_id):
+    """インライン編集による従業員情報更新"""
+    employees = load_employees()
+    
+    employee = None
+    for emp in employees:
+        if emp['employee_id'] == employee_id:
+            employee = emp
+            break
+    
+    if not employee:
+        return redirect(url_for('index'))
+    
+    employee.update({
+        "name": request.form.get('name'),
+        "kana": request.form.get('kana'),
+        "birthdate": request.form.get('birthdate'),
+        "department": request.form.get('department'),
+        "position": request.form.get('position'),
+        "employment_type": request.form.get('employment_type'),
+        "vacation_days": float(request.form.get('vacation_days')),
+        "status": request.form.get('status'),
+        "prefecture": request.form.get('prefecture'),
+        "city": request.form.get('city'),
+        "street": request.form.get('street'),
+        "address_other": request.form.get('address_other'),
+        "phone": request.form.get('phone'),
+        "insurance_type": request.form.get('insurance_type'),
+        "insurance_number": request.form.get('insurance_number'),
+        "insured_type": request.form.get('insured_type'),
+        "acquisition_loss": request.form.get('acquisition_loss'),
+        "reason_code": request.form.get('reason_code'),
+        "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    })
+    
+    save_employees(employees)
+    return redirect(url_for('index', id=employee_id))
+
 @app.route('/delete/<employee_id>')
 def delete_employee(employee_id):
     """従業員情報削除"""
