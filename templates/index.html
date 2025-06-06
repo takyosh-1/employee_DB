@@ -101,6 +101,7 @@
                                         <option value="休職中" {% if selected_employee.status == '休職中' %}selected{% endif %}>休職中</option>
                                         <option value="育休中" {% if selected_employee.status == '育休中' %}selected{% endif %}>育休中</option>
                                         <option value="産休中" {% if selected_employee.status == '産休中' %}selected{% endif %}>産休中</option>
+                                        <option value="退職" {% if selected_employee.status == '退職' %}selected{% endif %}>退職</option>
                                     </select>
                                 </td>
                             </tr>
@@ -174,9 +175,8 @@
                                 <td>
                                     <select id="insured_type" name="insured_type" required>
                                         <option value="">選択してください</option>
-                                        <option value="一般" {% if selected_employee.insured_type == '一般' %}selected{% endif %}>一般</option>
-                                        <option value="高齢者" {% if selected_employee.insured_type == '高齢者' %}selected{% endif %}>高齢者</option>
-                                        <option value="任意継続" {% if selected_employee.insured_type == '任意継続' %}selected{% endif %}>任意継続</option>
+                                        <option value="保険対象" {% if selected_employee.insured_type == '保険対象' %}selected{% endif %}>保険対象</option>
+                                        <option value="保険対象外" {% if selected_employee.insured_type == '保険対象外' %}selected{% endif %}>保険対象外</option>
                                     </select>
                                 </td>
                             </tr>
@@ -193,13 +193,7 @@
                             <tr>
                                 <th>得失理由区分</th>
                                 <td>
-                                    <select id="reason_code" name="reason_code" required>
-                                        <option value="">選択してください</option>
-                                        <option value="入社" {% if selected_employee.reason_code == '入社' %}selected{% endif %}>入社</option>
-                                        <option value="退職" {% if selected_employee.reason_code == '退職' %}selected{% endif %}>退職</option>
-                                        <option value="転勤" {% if selected_employee.reason_code == '転勤' %}selected{% endif %}>転勤</option>
-                                        <option value="その他" {% if selected_employee.reason_code == 'その他' %}selected{% endif %}>その他</option>
-                                    </select>
+                                    <input type="text" id="reason_code" name="reason_code" value="{{ selected_employee.reason_code }}" required>
                                 </td>
                             </tr>
                         </table>
