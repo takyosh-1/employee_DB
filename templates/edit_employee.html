@@ -70,6 +70,7 @@
                     <option value="休職中" {% if employee.status == '休職中' %}selected{% endif %}>休職中</option>
                     <option value="育休中" {% if employee.status == '育休中' %}selected{% endif %}>育休中</option>
                     <option value="産休中" {% if employee.status == '産休中' %}selected{% endif %}>産休中</option>
+                    <option value="退職" {% if employee.status == '退職' %}selected{% endif %}>退職</option>
                 </select>
             </div>
         </fieldset>
@@ -133,9 +134,8 @@
                 <label for="insured_type">被保険者区分</label>
                 <select id="insured_type" name="insured_type" required>
                     <option value="">選択してください</option>
-                    <option value="一般" {% if employee.insured_type == '一般' %}selected{% endif %}>一般</option>
-                    <option value="高齢者" {% if employee.insured_type == '高齢者' %}selected{% endif %}>高齢者</option>
-                    <option value="任意継続" {% if employee.insured_type == '任意継続' %}selected{% endif %}>任意継続</option>
+                    <option value="保険対象" {% if employee.insured_type == '保険対象' %}selected{% endif %}>保険対象</option>
+                    <option value="保険対象外" {% if employee.insured_type == '保険対象外' %}selected{% endif %}>保険対象外</option>
                 </select>
             </div>
             
@@ -150,13 +150,7 @@
             
             <div class="form-group">
                 <label for="reason_code">得失理由区分</label>
-                <select id="reason_code" name="reason_code" required>
-                    <option value="">選択してください</option>
-                    <option value="入社" {% if employee.reason_code == '入社' %}selected{% endif %}>入社</option>
-                    <option value="退職" {% if employee.reason_code == '退職' %}selected{% endif %}>退職</option>
-                    <option value="転勤" {% if employee.reason_code == '転勤' %}selected{% endif %}>転勤</option>
-                    <option value="その他" {% if employee.reason_code == 'その他' %}selected{% endif %}>その他</option>
-                </select>
+                <input type="text" id="reason_code" name="reason_code" value="{{ employee.reason_code }}" required>
             </div>
         </fieldset>
         
